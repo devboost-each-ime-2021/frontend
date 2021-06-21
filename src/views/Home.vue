@@ -24,13 +24,13 @@
           >
             <div class="subject-name">
               {{ subject.name }}
-              <button>botao</button>
+              <button v-on:click="toggleDisplayDescription(subject.id)">
+                botao
+              </button>
             </div>
             <div
               class="subject-description"
-              :style="{
-                display: subject.displayDescription ? 'flex' : 'none',
-              }"
+              :style="subjectDescriptionStyle(subject.displayDescription)"
             >
               {{ subject.description }}
             </div>
@@ -45,25 +45,33 @@
 export default {
   name: "Home",
   data: () => ({
-    subjectGroups: [
+    subjects: [
       {
         id: "1",
         name: "calculo 1",
         description: "Materia mais legal do mundo",
+        displayDescription: false,
       },
       {
         id: "2",
         name: "introdução a programação",
         description: "Devagar",
+        displayDescription: false,
       },
     ],
   }),
-  computed: {
-    subjects() {
-      return this.subjectGroups.map((subject) => ({
-        ...subject,
-        displayDescription: false,
-      }));
+  methods: {
+    toggleDisplayDescription(id) {
+      const index = this.subjects.findIndex((subject) => {
+        return subject.id == id;
+      });
+      this.subjects[index].displayDescription =
+        !this.subjects[index].displayDescription;
+    },
+    subjectDescriptionStyle(displayDescription) {
+      return {
+        display: displayDescription ? "flex" : "none",
+      };
     },
   },
 };
