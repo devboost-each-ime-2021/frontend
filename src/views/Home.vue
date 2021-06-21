@@ -18,11 +18,22 @@
         <input type="text" class="home-search-input" placeholder="Pesquisar" />
         <div>
           <div
-            class="subject"
-            v-for="subject in subjectGroups"
+            class="subject-container"
+            v-for="subject in subjects"
             v-bind:key="subject.id"
           >
-            {{ subject.name }}
+            <div class="subject-name">
+              {{ subject.name }}
+              <button>botao</button>
+            </div>
+            <div
+              class="subject-description"
+              :style="{
+                display: subject.displayDescription ? 'flex' : 'none',
+              }"
+            >
+              {{ subject.description }}
+            </div>
           </div>
         </div>
       </div>
@@ -47,6 +58,14 @@ export default {
       },
     ],
   }),
+  computed: {
+    subjects() {
+      return this.subjectGroups.map((subject) => ({
+        ...subject,
+        displayDescription: false,
+      }));
+    },
+  },
 };
 </script>
 
@@ -102,7 +121,33 @@ main {
   color: #000000;
 }
 
-.subject {
-  padding: 10px 8px;
+.subject-name {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: 8px 8px 0 0;
+  outline: none;
+  padding: 4px 20px;
+  background: #aaaaaa;
+}
+
+.subject-description {
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40px;
+  border: none;
+  border-radius: 0 0 8px 8px;
+  outline: none;
+  padding: 4px 20px;
+  background: #cccccc;
+}
+
+.subject-container {
+  margin-bottom: 20px;
 }
 </style>
