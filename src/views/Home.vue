@@ -1,21 +1,9 @@
 <template>
   <div id="home-page">
-    <nav>
-      <div class="nav-title">
-        <h1>Cadê o link?</h1>
-      </div>
-      <div class="nav-options">
-        <ul>
-          <li>Entrar</li>
-          <li>Cadastrar</li>
-          <li>Sobre</li>
-        </ul>
-      </div>
-    </nav>
-
+    <Navbar />
     <main>
       <div class="main-container">
-        <input type="text" class="home-search-input" placeholder="Pesquisar" />
+        <SearchInput />
         <div>
           <div
             class="subject-container"
@@ -42,7 +30,13 @@
 </template>
 
 <script>
+import Navbar from "@/components/Navbar.vue";
+import SearchInput from "@/components/SearchInput.vue";
 export default {
+  components: {
+    Navbar,
+    SearchInput,
+  },
   name: "Home",
   data: () => ({
     subjects: [
@@ -78,25 +72,6 @@ export default {
 </script>
 
 <style scoped>
-nav {
-  display: flex;
-  justify-content: space-between;
-  background-color: #aaaaaa;
-  padding: 20px;
-}
-
-.nav-options ul {
-  list-style: none;
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.nav-options ul li {
-  margin-right: 20px;
-}
-
 #home-page {
   height: 100vh;
 }
@@ -112,21 +87,6 @@ main {
   flex-direction: column;
   width: 60%;
   margin-top: 30px;
-}
-
-.home-search-input {
-  width: 100%;
-  height: 40px;
-  border: none;
-  border-radius: 8px;
-  outline: none;
-  padding: 4px 20px;
-  background: #aaaaaa;
-  margin-bottom: 20px;
-}
-
-.home-search-input::placeholder {
-  color: #000000;
 }
 
 .subject-name {
