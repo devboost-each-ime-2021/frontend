@@ -7,14 +7,19 @@
 
         <div class="subjects">
           <ul>
-            <li v-for="subject in subjects" v-bind:key="subject.id">
+            <li
+              v-for="(subject, index) in subjects"
+              v-bind:key="subject.id"
+              @click="changeSubject(index)"
+              :id="currentSubjectStyle(index)"
+            >
               {{ subject.name }}
             </li>
           </ul>
         </div>
       </aside>
       <main>
-        <SubjectContent :subject="subjects[0]" />
+        <SubjectContent :subject="subjects[currentSubject]" />
       </main>
     </div>
   </div>
@@ -32,6 +37,7 @@ export default {
     SubjectContent,
   },
   data: () => ({
+    currentSubject: 0,
     subjects: [
       {
         id: "1",
@@ -76,6 +82,18 @@ export default {
       },
     ],
   }),
+  methods: {
+    changeSubject(index) {
+      this.currentSubject = index;
+    },
+  },
+  computed: {
+    currentSubjectStyle() {
+      return (index) => {
+        return this.currentSubject === index ? "item-clicked" : "";
+      };
+    },
+  },
 };
 </script>
 
@@ -92,6 +110,7 @@ aside {
   border-right: 1px solid;
   width: 20%;
 }
+
 main {
   width: 80%;
 }
@@ -101,15 +120,27 @@ main {
   width: 70%;
   align-self: center;
 }
+
 .subjects ul {
   list-style: none;
 }
+
+#item-clicked {
+  background: #AAA;
+}
+
 .subjects ul li {
   display: flex;
   justify-content: center;
   padding: 10px 0;
   border-bottom: 1px solid;
+  cursor: pointer;
 }
+
+.subjects ul li:hover {
+  background: #ddd;
+}
+
 .subjects ul li:first-child {
   border-top: 1px solid;
 }
