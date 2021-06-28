@@ -13,7 +13,9 @@
           </ul>
         </div>
       </aside>
-      <main></main>
+      <main>
+        <SubjectContent :subject="subjects[0]" />
+      </main>
     </div>
   </div>
 </template>
@@ -21,10 +23,13 @@
 <script>
 import Navbar from "@/components/Navbar.vue";
 import SearchInput from "@/components/SearchInput.vue";
+import SubjectContent from "@/components/SubjectContent.vue";
+
 export default {
   components: {
     Navbar,
     SearchInput,
+    SubjectContent,
   },
   data: () => ({
     subjects: [
@@ -32,13 +37,42 @@ export default {
         id: "1",
         name: "calculo 1",
         description: "Materia mais legal do mundo",
-        displayDescription: false,
+        sections: [
+          {
+            id: "1",
+            title: "Derivada",
+            items: [
+              { id: "1", title: "cosseno" },
+              { id: "2", title: "seno" },
+              { id: "3", title: "tangente" },
+            ],
+          },
+          {
+            id: "2",
+            title: "Limites",
+            items: [
+              { id: "1", title: "cosseno" },
+              { id: "2", title: "seno" },
+              { id: "3", title: "tangente" },
+            ],
+          },
+        ],
       },
       {
         id: "2",
         name: "introdução a programação",
         description: "Devagar",
-        displayDescription: false,
+        sections: [
+          {
+            id: "1",
+            title: "Ponteiros",
+            items: [
+              { id: "1", title: "cosseno" },
+              { id: "2", title: "seno" },
+              { id: "3", title: "tangente" },
+            ],
+          },
+        ],
       },
     ],
   }),
@@ -57,6 +91,9 @@ aside {
   flex-direction: column;
   border-right: 1px solid;
   width: 20%;
+}
+main {
+  width: 80%;
 }
 
 .search-input {
