@@ -39,21 +39,17 @@ export default {
   },
   name: "Home",
   data: () => ({
-    subjects: [
-      {
-        id: "1",
-        name: "calculo 1",
-        description: "Materia mais legal do mundo",
-        displayDescription: false,
-      },
-      {
-        id: "2",
-        name: "introdução a programação",
-        description: "Devagar",
-        displayDescription: false,
-      },
-    ],
+    subjects: [],
   }),
+  async created() {
+    const response = await fetch("http://localhost:3000/subjects");
+    const subjects = await response.json();
+
+    this.subjects = subjects.map(subject => ({
+          ...subject,
+          displayDescription: false
+          }));
+  },
   methods: {
     toggleDisplayDescription(id) {
       const index = this.subjects.findIndex((subject) => {
