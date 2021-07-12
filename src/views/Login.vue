@@ -4,17 +4,21 @@
 
     <main>
       <div class="login-container">
-        <form>
-          <input type="text" />
-          <input type="text" />
+        <form v-on:submit.prevent="submitLoginForm">
+          <input
+            type="text"
+            placeholder="Nome de usuário ou email"
+            v-model="user"
+          />
+          <input type="password" placeholder="Senha" v-model="password" />
 
-          <button>Entrar</button>
+          <button type="submit">Entrar</button>
         </form>
 
-        <router-link to="/">
+        <router-link class="links" to="/">
           <p>Não tem conta? Cadastre-se aqui</p>
         </router-link>
-        <router-link to="/">
+        <router-link class="links" to="/">
           <p>Esqueci minha senha</p>
         </router-link>
       </div>
@@ -28,6 +32,38 @@ import Navbar from "@/components/Navbar.vue";
 export default {
   components: {
     Navbar,
+  },
+  data: () => ({
+    user: "",
+    password: "",
+  }),
+  methods: {
+    async submitLoginForm() {
+      const body = {
+        user: this.user,
+        password: this.password,
+      };
+
+      console.table(body);
+
+      const response = await fetch("http://localhost:3000/login", {
+        method: "POST",
+        body: JSON.stringify(body),
+        headers: {
+          "Content-type": "application/json; charset=UTF-8",
+          "Accept": "application/json",
+        }
+      });
+
+      const jsonResponse = await response.json();
+
+      if(response.status === 404){
+        alert(jsonResponse.message);
+      } else {
+        console.table(jsonResponse);
+      }
+
+    },
   },
 };
 </script>
@@ -44,15 +80,39 @@ main {
   flex-direction: column;
   width: 60%;
   margin-top: 10%;
+  justify-content: center;
 
   height: 400px;
   align-items: center;
-  background: #aaa;
+  background: #e0e0e0;
 }
 
 .login-container form {
   display: flex;
   flex-direction: column;
+  width: 60%;
+}
+
+.login-container form input {
+  width: 100%;
+  height: 40px;
+  margin-bottom: 20px;
+  outline: none;
+  padding: 10px;
+}
+
+.login-container form button {
+  margin-bottom: 24px;
+  padding: 10px;
+  background: #c4c4c4;
+  border: none;
+  font-size: 20px;
+}
+
+.links {
+  text-decoration: none;
+  color: #000;
+  margin-bottom: 10px;
 }
 
 .container {
