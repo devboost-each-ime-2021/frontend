@@ -1,12 +1,14 @@
 <template>
   <nav>
     <div class="nav-title">
-      <h1>Cadê o link?</h1>
+      <router-link class="home-page-button" to="/">
+        <h1>Cadê o link?</h1>
+      </router-link>
     </div>
     <div class="nav-options">
       <ul>
         <li v-if="!isLogged">
-          <router-link to="/dashboard"> Entrar </router-link>
+          <router-link to="/Login"> Entrar </router-link>
         </li>
         <li v-if="!isLogged">Cadastrar</li>
         <li>Sobre</li>
@@ -32,6 +34,11 @@ nav {
   justify-content: space-between;
   background-color: #aaaaaa;
   padding: 20px;
+}
+
+.home-page-button {
+  text-decoration: none;
+  color: #000;
 }
 
 .nav-options ul {

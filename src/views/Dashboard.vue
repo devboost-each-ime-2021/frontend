@@ -38,50 +38,14 @@ export default {
   },
   data: () => ({
     currentSubject: 0,
-    subjects: [
-      {
-        id: "1",
-        name: "calculo 1",
-        description: "Materia mais legal do mundo",
-        sections: [
-          {
-            id: "1",
-            title: "Derivada",
-            items: [
-              { id: "1", title: "cosseno" },
-              { id: "2", title: "seno" },
-              { id: "3", title: "tangente" },
-            ],
-          },
-          {
-            id: "2",
-            title: "Limites",
-            items: [
-              { id: "1", title: "cosseno" },
-              { id: "2", title: "seno" },
-              { id: "3", title: "tangente" },
-            ],
-          },
-        ],
-      },
-      {
-        id: "2",
-        name: "introdução a programação",
-        description: "Devagar",
-        sections: [
-          {
-            id: "1",
-            title: "Ponteiros",
-            items: [
-              { id: "1", title: "cosseno" },
-              { id: "2", title: "seno" },
-              { id: "3", title: "tangente" },
-            ],
-          },
-        ],
-      },
-    ],
+    subjects: [],
   }),
+  async created() {
+    const response = await fetch("http://localhost:3000/users/1/subjects");
+    const subjects = await response.json();
+
+    this.subjects = subjects;
+  },
   methods: {
     changeSubject(index) {
       this.currentSubject = index;
@@ -126,7 +90,7 @@ main {
 }
 
 #item-clicked {
-  background: #AAA;
+  background: #aaa;
 }
 
 .subjects ul li {

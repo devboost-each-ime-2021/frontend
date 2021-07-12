@@ -30,8 +30,8 @@
 </template>
 
 <script>
-import Navbar from "@/components/Navbar.vue";
 import SearchInput from "@/components/SearchInput.vue";
+import Navbar from "@/components/Navbar.vue";
 export default {
   components: {
     Navbar,
@@ -45,10 +45,10 @@ export default {
     const response = await fetch("http://localhost:3000/subjects");
     const subjects = await response.json();
 
-    this.subjects = subjects.map(subject => ({
-          ...subject,
-          displayDescription: false
-          }));
+    this.subjects = subjects.map((subject) => ({
+      ...subject,
+      displayDescription: false,
+    }));
   },
   methods: {
     toggleDisplayDescription(id) {
