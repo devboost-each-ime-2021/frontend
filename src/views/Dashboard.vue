@@ -19,7 +19,7 @@
         </div>
       </aside>
       <main>
-        <SubjectContent :subject="subjects[currentSubject]" />
+        <SubjectContent v-if="subjectsNotEmpty" :subject="subjects[currentSubject]" />
       </main>
     </div>
   </div>
@@ -42,7 +42,7 @@ export default {
   }),
   async created() {
     const userID = this.$route.params.id;
-    console.log(userID);
+
     const response = await fetch(
       `http://localhost:3000/users/${userID}/subjects`
     );
@@ -61,6 +61,9 @@ export default {
         return this.currentSubject === index ? "item-clicked" : "";
       };
     },
+    subjectsNotEmpty() {
+      return this.subjects.length > 0;
+    }
   },
 };
 </script>
