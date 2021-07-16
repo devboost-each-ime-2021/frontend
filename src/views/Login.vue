@@ -51,18 +51,23 @@ export default {
         body: JSON.stringify(body),
         headers: {
           "Content-type": "application/json; charset=UTF-8",
-          "Accept": "application/json",
-        }
+          Accept: "application/json",
+        },
       });
 
       const jsonResponse = await response.json();
 
-      if(response.status === 404){
+      if (response.status === 404) {
         alert(jsonResponse.message);
       } else {
-        console.table(jsonResponse);
+        const userID = jsonResponse.id;
+        this.$router.push({
+          name: "Dashboard",
+          params: {
+            id: userID,
+          },
+        });
       }
-
     },
   },
 };

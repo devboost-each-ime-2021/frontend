@@ -41,7 +41,11 @@ export default {
     subjects: [],
   }),
   async created() {
-    const response = await fetch("http://localhost:3000/users/1/subjects");
+    const userID = this.$route.params.id;
+    console.log(userID);
+    const response = await fetch(
+      `http://localhost:3000/users/${userID}/subjects`
+    );
     const subjects = await response.json();
 
     this.subjects = subjects;
