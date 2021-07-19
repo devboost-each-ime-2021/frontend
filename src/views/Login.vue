@@ -12,12 +12,13 @@
           />
           <input type="password" placeholder="Senha" v-model="password" />
 
-          <button type="submit">Entrar</button>
+          <button class="submit-button" type="submit">Entrar</button>
         </form>
 
-        <router-link class="links" to="/">
+        <router-link class="links" to="/register">
           <p>Não tem conta? Cadastre-se aqui</p>
         </router-link>
+
         <router-link class="links" to="/">
           <p>Esqueci minha senha</p>
         </router-link>
@@ -126,5 +127,9 @@ main {
 
 .nav-bar {
   height: 7%;
+}
+
+.submit-button:hover {
+  background: #aaaaaa;
 }
 </style>

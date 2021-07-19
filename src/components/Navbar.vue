@@ -10,7 +10,9 @@
         <li v-if="!isLogged">
           <router-link to="/Login"> Entrar </router-link>
         </li>
-        <li v-if="!isLogged">Cadastrar</li>
+        <li v-if="!isLogged">
+          <router-link to="/Register"> Cadastrar </router-link>
+        </li>
         <li>Sobre</li>
       </ul>
     </div>

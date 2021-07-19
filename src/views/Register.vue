@@ -15,7 +15,7 @@
             v-model="confirmPassword"
           />
 
-          <button type="submit">resgistrar</button>
+          <button class="submit-button" type="submit">resgistrar</button>
         </form>
 
         <router-link class="links" to="/login">
@@ -67,7 +67,7 @@ export default {
 
       const jsonResponse = await response.json();
 
-      if (response.status === 404) {
+      if (response.status === 404 || response.status === 400) {
         alert(jsonResponse.message);
       } else {
         const userID = jsonResponse.id;
@@ -136,5 +136,9 @@ main {
 
 .nav-bar {
   height: 7%;
+}
+
+.submit-button:hover {
+  background: #aaaaaa;
 }
 </style>
