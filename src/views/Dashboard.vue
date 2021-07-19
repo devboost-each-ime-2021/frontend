@@ -19,7 +19,10 @@
         </div>
       </aside>
       <main>
-        <SubjectContent v-if="subjectsNotEmpty" :subject="subjects[currentSubject]" />
+        <SubjectContent
+          v-if="subjectsNotEmpty"
+          :subject="subjects[currentSubject]"
+        />
       </main>
     </div>
   </div>
@@ -63,7 +66,7 @@ export default {
     },
     subjectsNotEmpty() {
       return this.subjects.length > 0;
-    }
+    },
   },
 };
 </script>
