@@ -5,7 +5,7 @@
     </div>
     <SubjectSection
       v-for="section in subject.sections"
-      v-bind:key="section.id"
+      v-bind:key="section._id"
       :section="section"
     />
   </div>

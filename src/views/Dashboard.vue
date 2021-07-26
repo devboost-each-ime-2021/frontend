@@ -9,7 +9,7 @@
           <ul>
             <li
               v-for="(subject, index) in subjects"
-              v-bind:key="subject.id"
+              v-bind:key="subject._id"
               @click="changeSubject(index)"
               :id="currentSubjectStyle(index)"
             >
