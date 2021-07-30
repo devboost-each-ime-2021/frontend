@@ -1,9 +1,23 @@
 <template>
-  <input type="text" class="home-search-input" placeholder="Pesquisar" />
+  <input
+    v-model="searchText"
+    type="text"
+    class="home-search-input"
+    placeholder="Pesquisar"
+  />
 </template>
 
 <script>
-export default {};
+export default {
+  data: () => ({
+    searchText: "",
+  }),
+  watch: {
+    searchText() {
+      this.$emit("onSearchChange", this.searchText);
+    },
+  },
+};
 </script>
 
 <style scoped>
